@@ -9,6 +9,7 @@ public class TreeController : MonoBehaviour
     GameObject myTree;
     public int treeHealth=3;
     private bool fallen = false;
+    public AudioSource TreeFallenAudio;
 
 
     // Start is called before the first frame update
@@ -22,20 +23,23 @@ public class TreeController : MonoBehaviour
     {
         if (treeHealth <=0 & fallen==false)
         {
+            TreeFallenAudio.Play();
             Rigidbody treeRB = myTree.AddComponent<Rigidbody>();
             treeRB.isKinematic = false;
             treeRB.useGravity = true;
-            treeRB.AddForce(Vector3.forward, ForceMode.Impulse);
-            StartCoroutine(removeTree());
+
+            StartCoroutine(removeTree(treeRB));
             fallen = true;
 
         }
     }
 
     //Create corutine
-    private IEnumerator removeTree()
+    private IEnumerator removeTree(Rigidbody treeRB)
     {
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(2);
+        treeRB.AddForce(Vector3.forward, ForceMode.Impulse);
+        yield return new WaitForSeconds(5);
         Destroy(myTree);
     }
 
