@@ -24,6 +24,10 @@ public class TreeController : MonoBehaviour
         if (treeHealth <=0 & fallen==false)
         {
             TreeFallenAudio.Play();
+            GameObject parentCell = myTree.transform.parent.gameObject.transform.parent.gameObject; //Create reference to the ForestFireCell prefab this instance is childed to - so that I can access the current state of the tree (alight, alive etc..)
+            ForestFireCell activeCell = parentCell.GetComponent<ForestFireCell>();
+            activeCell.cellState = ForestFireCell.State.Burnt;
+
             Rigidbody treeRB = myTree.AddComponent<Rigidbody>();
             treeRB.isKinematic = false;
             treeRB.useGravity = true;
@@ -39,8 +43,10 @@ public class TreeController : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         treeRB.AddForce(Vector3.forward, ForceMode.Impulse);
-        yield return new WaitForSeconds(5);
-        Destroy(myTree);
+        yield return new WaitForSeconds(3);
+        //Destroy(myTree);
+        myTree.SetActive(false);
+
     }
 
 

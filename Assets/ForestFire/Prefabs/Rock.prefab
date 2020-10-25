@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5721229309530595634}
   m_Layer: 0
   m_Name: Rock_01
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
@@ -88,9 +88,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5710389328890826774}
+  - component: {fileID: 6955004594663122015}
   m_Layer: 0
   m_Name: P_Rock_01
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
@@ -110,6 +111,19 @@ Transform:
   m_Father: {fileID: 577119391940456402}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -14.558001, y: -47.638, z: 15.411001}
+--- !u!135 &6955004594663122015
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5707509267758414014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7719736633174209778
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +135,7 @@ GameObject:
   - component: {fileID: 577119391940456402}
   m_Layer: 0
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
@@ -152,9 +166,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8680504862081965624}
+  - component: {fileID: 9008028811811998105}
   m_Layer: 0
   m_Name: P_Rock_03
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
@@ -174,6 +189,19 @@ Transform:
   m_Father: {fileID: 577119391940456402}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 16.398, y: 66.272, z: 67.983}
+--- !u!135 &9008028811811998105
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8681503626517210414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8682205948264187178
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +215,7 @@ GameObject:
   - component: {fileID: 8658898668024668496}
   m_Layer: 0
   m_Name: Rock_03
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
@@ -262,9 +290,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8714076020112104117}
+  - component: {fileID: 625363980957838503}
   m_Layer: 0
   m_Name: P_Rock_02
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
@@ -284,6 +313,19 @@ Transform:
   m_Father: {fileID: 577119391940456402}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 58.759003, z: 0}
+--- !u!135 &625363980957838503
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717547527159138505}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8717649734210165415
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +339,7 @@ GameObject:
   - component: {fileID: 8696390891865152841}
   m_Layer: 0
   m_Name: Rock_02
-  m_TagString: Untagged
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4

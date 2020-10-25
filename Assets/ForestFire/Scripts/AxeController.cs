@@ -5,52 +5,79 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class AxeController : MonoBehaviour
 {
+    //Variable creation --------------------------------------------------------------------------------------------------
 
-    public AudioSource TreeChopSound1;
-    GameObject Axe;
+        public AudioSource TreeChopSound1;
+        public AudioSource RockHitSound;
+        GameObject Axe;
+        bool canHit = true;
+        bool shownTooltip = false;
+        bool axeStart = false;
+
+    //--------------------------------------------------------------------------------------------------------------------
+
 
     private void Start()
     {
         Axe = this.gameObject;
+        XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable.onSelectEnter.AddListener(StartAxe);
+        grabInteractable.onFirstHoverEnter.AddListener(StartTooltip);
     }
+
+
+    //Function to create a popup tooltip on first hover - instructing the user
+    public void StartTooltip(XRBaseInteractor interactor)
+    {
+        if (shownTooltip == false)
+        {
+            GameObject tooltip = Axe.transform.Find("Tooltip").gameObject;
+            tooltip.SetActive(true);
+            shownTooltip = true;
+        }
+
+    }
+
+
 
     //Function to enable to gravity on the rigid body, but only once the first grab has occured - allows axe to stay stuck into tree at the start of the scene
-    public void EnaleGravityOnGrab()
+    public void StartAxe(XRBaseInteractor interactor)
     {
-        Rigidbody axeRB = Axe.GetComponent<Rigidbody>();
-        axeRB.useGravity = true;
+        if (axeStart == false)
+        {
+            Rigidbody axeRB = Axe.GetComponent<Rigidbody>();
+            axeRB.useGravity = true;
+            axeRB.isKinematic = false;
+            GameObject tooltip = Axe.transform.Find("Tooltip").gameObject;
+            tooltip.SetActive(false);
+        }
     }
 
-    //Function to disable gravity on the rigid body, useful if wanting the Axe to become stuck in a tree
-    public void DisableGravity()
-    {
-        Rigidbody axeRB = Axe.GetComponent<Rigidbody>();
-        axeRB.useGravity = false;
-    }
 
-    bool canHit=true;
-
-
-
-
-    //Method to call on collision of Axe 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //GameObject parentCell = collision.gameObject.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject; //Create reference to the ForestFireCell prefab this instance is childed to - so that I can access the current state of the tree (alight, alive etc..)
-        //ForestFireCell activeCell = parentCell.GetComponent<ForestFireCell>();
-
+        //Method to call on collision of Axe
+        private void OnCollisionEnter(Collision collision)
+        {
         //Wrap in a try-catch incase the axe hits more than 3 times, and occurs faster than the script processes // stops the null exception gameobject error
         try
         {
-            if ((collision.gameObject.tag == "tree") & (canHit==true)) //& (activeCell.cellState == ForestFireCell.State.Tree))
+            GameObject parentCell = collision.gameObject.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject; //Create reference to the ForestFireCell prefab this instance is childed to - so that I can access the current state of the tree (alight, alive etc..)
+            ForestFireCell activeCell = parentCell.GetComponent<ForestFireCell>();
+
+            if ((collision.gameObject.tag == "tree") & (canHit==true) & (activeCell.cellState == ForestFireCell.State.Tree))
             {
                 canHit = false;
                 TreeChopSound1.Play(); //Play the sound provided
-                //Debug.Log("Collison with " + collision.gameObject.transform.parent.gameObject.name); //Debug the collision to determine whether the gameobect was colliding with the parent or child instance
                 GameObject parentTree = collision.gameObject.transform.parent.gameObject; //Create a gameobject variable to store the parent of the gameobject it collided with - where treecontroller is located
                 TreeController activeTree = parentTree.GetComponent<TreeController>(); //Find Tree controller component, to allow access to variables
                 activeTree.treeHealth--; //Decrement tree health by 1
             }
+
+            if ((collision.gameObject.tag == "rock") & (canHit==true))
+            {
+                canHit = false;
+                RockHitSound.Play(); //Play the sound provided
+            }
+
         }
         catch (System.Exception)
         {
@@ -60,11 +87,17 @@ public class AxeController : MonoBehaviour
     //Detemrine when axe leaves the tree collider, allow hitbox detection to turn back on
     private void OnCollisionExit(Collision collision)
     {
+
         try
         {
-            if ((collision.gameObject.tag == "tree")) //& (activeCell.cellState == ForestFireCell.State.Tree))
+            GameObject parentCell = collision.gameObject.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject; //Create reference to the ForestFireCell prefab this instance is childed to - so that I can access the current state of the tree (alight, alive etc..)
+            ForestFireCell activeCell = parentCell.GetComponent<ForestFireCell>();
+            if ((collision.gameObject.tag == "tree") & (activeCell.cellState == ForestFireCell.State.Tree))
             {
-
+                StartCoroutine(hitDetectionState());
+            }
+            if (collision.gameObject.tag == "rock")
+            { 
                 StartCoroutine(hitDetectionState());
             }
         }
@@ -80,7 +113,6 @@ public class AxeController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         canHit = true;
     }
-
 
 
 }
