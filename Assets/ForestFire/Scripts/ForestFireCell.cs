@@ -30,6 +30,7 @@ public class ForestFireCell : MonoBehaviour
     public GameObject treeObject; // reference to tree visual object
     public GameObject leaves; // reference to leaves visual object
     public GameObject rockObject; // reference to rock visual object
+    public GameObject axeObject; //Reference to axe object
 
     public GameObject treeFireFVX; // reference to tree fire vfx
     public GameObject grassFireFVX; // reference to grass fire vfx

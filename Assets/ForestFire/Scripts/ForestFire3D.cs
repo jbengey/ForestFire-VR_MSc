@@ -43,6 +43,7 @@ public class ForestFire3D : MonoBehaviour
         RandomiseGrid();
         PauseGame(true);
         UpdateGridVisuals();
+        spawnAxe();
     }
 
     // this function controls whether or not to pause the game
@@ -143,6 +144,9 @@ public class ForestFire3D : MonoBehaviour
 
         // set the middle cell as grass which is where the player is placed
         forestFireCells[20, 20].SetGrass();
+
+        //Spawn the axe
+        spawnAxe();
     }
 
 
@@ -332,4 +336,47 @@ public class ForestFire3D : MonoBehaviour
             }
         }
     }
+
+
+
+
+
+    //Method to spawn the axe randomly in one of the cells that are set to "tree" state
+    bool axeSpawn = false;
+    public int axeX, axeY;
+    private void spawnAxe()
+    {
+        //Remove axe if there is one already - useful for the randomisation feature as allows position to change without duplicates
+        if (axeSpawn == true)
+        {
+            GameObject axe = GameObject.Find("Fire Axe");
+            Destroy(axe);
+        }
+
+        //Choose a random cell number for X and Y
+        axeX = UnityEngine.Random.Range(0, gridSizeX-5);
+        axeY = UnityEngine.Random.Range(0, gridSizeY-5);
+
+        //Access that cell, check its a tree - if not, move to the another random one (Loop until find a tree)
+        bool axeTree=false;
+        while (axeTree==false)
+        {
+            //Check the initial random prefab
+            if ((forestFireCells[axeX, axeY].cellState == ForestFireCell.State.Tree) & (forestFireCells[axeX, axeY].cellState != ForestFireCell.State.Alight))
+            {
+                //Show the axe gameobject
+                GameObject axecell = forestFireCells[axeX, axeY].axeObject;
+                axecell.SetActive(true);
+                Debug.Log("Axe Spawned at cell:" + axeX + " " + axeY);
+                axeTree = true;
+                axeSpawn = true;
+            }
+            else
+            {
+                axeX = UnityEngine.Random.Range(0, gridSizeX-5);
+                axeY = UnityEngine.Random.Range(0, gridSizeY-5);
+            }
+        }
+    }
+
 }
