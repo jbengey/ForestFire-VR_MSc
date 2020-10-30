@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public HealthBar healthBar;
+    public Image DamageOverlay;
 
     public int MaxHealth=100, CurrentHealth; //Create health varaibles for the player, default values
     public AudioSource DamageSound, DeathSound; //Create reference to audiosource
@@ -19,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
         {
             CurrentHealth = CurrentHealth - damagevalue; //Reduce player health
             DamageSound.Play(); //Play damage sound, alerting the player
+            healthBar.SetHealth(CurrentHealth);
         }
     }
 
@@ -59,15 +63,18 @@ public class PlayerHealth : MonoBehaviour
     //coroutine Function to deal damage to player if next to the a fire for longer than specified time
     private IEnumerator FireDamage()
     {
+        DamageOverlay.enabled = true;
         CanTakeDamage = false; //Stop the update function from being called, whilst evaluating player status
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
     
         if (IsPlayerNearFire() == true) //Check if still next to fire, if so take damage
         {
             TakeDamage(5);
         }
+        DamageOverlay.enabled = false;
         CanTakeDamage = true; //Allow update function to continue checking each frame
     }
+
 
 
 
@@ -75,6 +82,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         CurrentHealth = MaxHealth; //Set current player health to full - start of game
+        healthBar.SetMaxHealth(MaxHealth);
     }
 
     // Update is called once per frame

@@ -75,8 +75,13 @@ public class MiniMap : MonoBehaviour
                 {
                     cellSpriteRenderers[xCount, yCount].color = Color.green;
                 }
+                else if (forestFire3D.forestFireCells[xCount, yCount].cellState == ForestFireCell.State.Burnt)
+                {
+                    cellSpriteRenderers[xCount, yCount].color = Color.black;
+                }
                 else // something has gone wrong, display an error message
                 {
+                    Debug.Log("State is:" + forestFire3D.forestFireCells[xCount, yCount].cellState);
                     Debug.LogError("objectArray is not 0, 1 or 2, check code for errors");
                 }
             }

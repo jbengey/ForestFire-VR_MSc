@@ -419,6 +419,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2356474903813570574, guid: a1edff9265393e6488e914edbb1a2042,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2471739892762720940, guid: a1edff9265393e6488e914edbb1a2042,
         type: 3}
       propertyPath: m_Name
@@ -613,6 +618,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4574348834537664, guid: a3ff17b350465904fbd62b8a7802bfbf, type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058826914081286610, guid: a3ff17b350465904fbd62b8a7802bfbf,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168530451931672554, guid: a3ff17b350465904fbd62b8a7802bfbf,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
