@@ -10,6 +10,8 @@ public class MiniMap : MonoBehaviour
     public ForestFire3D forestFire3D; // reference to the main forest fire 3D script
 
     public GameObject cellSprite; // sprite used to represent a cell on the grid
+    public Sprite axeSprite; // sprite used to represent a cell on the grid
+    public Sprite playerSprite; // sprite used to represent a cell on the grid
 
     public Transform spawnPosition; // initial spawn position
     public SpriteRenderer[,] cellSpriteRenderers = new SpriteRenderer[0, 0]; // an array to hold references to the sprite renderer component attached to each gameobject
@@ -31,7 +33,7 @@ public class MiniMap : MonoBehaviour
             for (int yCount = 0; yCount < sizeY; yCount++)
             {
                 // create cell sprite for each cell in the grid
-                GameObject newCell = Instantiate(cellSprite); 
+                GameObject newCell = Instantiate(cellSprite);
 
                 newCell.transform.SetParent(spawnPosition, true);
                 newCell.transform.localPosition = Vector3.zero;
@@ -42,10 +44,36 @@ public class MiniMap : MonoBehaviour
                 newCell.transform.localPosition = new Vector3(xCount * 0.005f, yCount * 0.005f, 0.0f);
 
                 // add a reference of this sprite renderer to the array so we can change it later quickly
-                cellSpriteRenderers[xCount, yCount] = newCell.GetComponent<SpriteRenderer>();     
+                cellSpriteRenderers[xCount, yCount] = newCell.GetComponent<SpriteRenderer>();
             }
         }
     }
+
+
+    private void GetPlayerPosition()
+    {
+        GameObject player = GameObject.Find("XR Rig"); //Find the player by XR RIG
+        Vector3 playerPosition = player.transform.position; //Get players current position
+        //Get heading of player
+
+        //Work out which cell that is for the minimap
+
+        //Plot to minimap - with sprite
+    }
+
+    private void GetAxePosition()
+    {
+        int AxecellX = forestFire3D.axeX; //get the reference of the Axe spawn location (x)
+        int AxecellY = forestFire3D.axeY; //get the reference of the Axe spawn location (y)
+
+        //Plot these onto the minimap
+        cellSpriteRenderers[AxecellX, AxecellY].sprite = axeSprite;
+        cellSpriteRenderers[AxecellX, AxecellY].color = Color.white;
+    }
+
+
+
+
 
     // Update is a built-in Unity function that is called once per frame 
     private void Update()
@@ -86,5 +114,6 @@ public class MiniMap : MonoBehaviour
                 }
             }
         }
+        GetAxePosition();
     }
 }
