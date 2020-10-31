@@ -13,6 +13,7 @@ public class AxeController : MonoBehaviour
         bool canHit = true;
         bool shownTooltip = false;
         bool axeStart = false;
+        public GameObject AxeMinimap;
 
     //--------------------------------------------------------------------------------------------------------------------
 
@@ -22,6 +23,7 @@ public class AxeController : MonoBehaviour
         Axe = this.gameObject;
         XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
         grabInteractable.onSelectEnter.AddListener(StartAxe);
+        grabInteractable.onSelectExit.AddListener(ShowAxeIcon);
         grabInteractable.onFirstHoverEnter.AddListener(StartTooltip);
     }
 
@@ -43,7 +45,9 @@ public class AxeController : MonoBehaviour
     //Function to enable to gravity on the rigid body, but only once the first grab has occured - allows axe to stay stuck into tree at the start of the scene
     public void StartAxe(XRBaseInteractor interactor)
     {
-        if (axeStart == false)
+        AxeMinimap.SetActive(false); //Hide minimap icon for axe on grab
+
+        if (axeStart == false) //Check if this is the first time picking up the axe
         {
             Rigidbody axeRB = Axe.GetComponent<Rigidbody>();
             axeRB.useGravity = true;
@@ -51,6 +55,13 @@ public class AxeController : MonoBehaviour
             GameObject tooltip = Axe.transform.Find("Tooltip").gameObject;
             tooltip.SetActive(false);
         }
+    }
+
+
+    //Function to enable to axe minimap icon
+    public void ShowAxeIcon(XRBaseInteractor interactor)
+    {
+        AxeMinimap.SetActive(true);
     }
 
 

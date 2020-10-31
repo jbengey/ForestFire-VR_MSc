@@ -7,6 +7,9 @@ using UnityEngine.VFX;
 // contains data about the cell and methods to change its visual appearance
 public class ForestFireCell : MonoBehaviour
 {
+    public SpriteRenderer cellMinimapSprite; //reference to the spriterenderer for this cell
+    public Sprite TreeSprite, FireSprite, RockSprite, DeadSprite; //Reference to all minimap sprites
+
     public int numberOfAliveNeighbours; // integer to store the number of alive neighbour cells
     public State cellState; // this variable stores the state of the cell as an enum defined below 
     public enum State
@@ -72,6 +75,7 @@ public class ForestFireCell : MonoBehaviour
     {
         cellState = State.Tree;
         groundMeshRenderer.material = groundMaterialTree;
+        cellMinimapSprite.sprite = TreeSprite;
         treeObject.SetActive(true);
     }
 
@@ -92,6 +96,7 @@ public class ForestFireCell : MonoBehaviour
             cellState = State.Rock;
             cellFuel = 0;
             groundMeshRenderer.material = groundMaterialRock;
+            cellMinimapSprite.sprite = RockSprite;
             rockObject.SetActive(true);
         }
     }
@@ -100,6 +105,7 @@ public class ForestFireCell : MonoBehaviour
     public void SetAlight()
     {
         cellState = State.Alight;
+        cellMinimapSprite.sprite = FireSprite;
 
         if (currentFire == null)
         {
@@ -134,6 +140,7 @@ public class ForestFireCell : MonoBehaviour
             leaves.SetActive(false);
 
         cellState = State.Burnt;
+        cellMinimapSprite.sprite = DeadSprite;
         groundMeshRenderer.material = groundMaterialBurnt;
     }
 }
