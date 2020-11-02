@@ -348,7 +348,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -651,6 +651,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8683621349933803301, guid: a1edff9265393e6488e914edbb1a2042,
+        type: 3}
+      propertyPath: minimapcell
+      value: 
+      objectReference: {fileID: 532708695981963964}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1edff9265393e6488e914edbb1a2042, type: 3}
 --- !u!1 &4045407423716281207 stripped

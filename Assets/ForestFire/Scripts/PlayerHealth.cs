@@ -4,11 +4,12 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public HealthBar healthBar;
-    public Image DamageOverlay;
+    public HealthBar healthBar; //ref to the healthbar ui element
+    public Image DamageOverlay; //ref to the damage overlay image 
 
     public int MaxHealth=100, CurrentHealth; //Create health varaibles for the player, default values
     public AudioSource DamageSound, DeathSound; //Create reference to audiosource
@@ -33,30 +34,31 @@ public class PlayerHealth : MonoBehaviour
         {
             DeathSound.Play(); //Play death sound
             //Move player to the end grave scene
+            SceneManager.LoadScene("Death");
         }
     }
 
-    //Function to check the distance of a player to a fire, and return true or false
+    //Function to check the distance of a player to a fire, and return true or false if is close
     bool IsPlayerNearFire()
     {
-        GameObject player = this.gameObject; //Find the player by XR RIG component
-        Vector3 playerPosition = player.transform.position; //Get players current position
+        Vector3 playerPosition = this.gameObject.transform.position; //Get players current position
 
-        Collider[] hitColliders = Physics.OverlapSphere(playerPosition, 4); //Create a physics sphere around the player, to check which objects are nearby
+        Collider[] hitColliders = Physics.OverlapSphere(playerPosition, 4); //Create a physics sphere around the player, to check which objects are nearby, returns array of colliders found
 
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.tag == "tree") //validate if tree is found in any state, before attempting to reach forest fire script
             {
+                GameObject tree = hitCollider.gameObject.transform.parent.gameObject; //reference to tree parent
                 GameObject parentCell = hitCollider.gameObject.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject; //Create reference to the ForestFireCell prefab this instance is childed to - so that I can access the current state of the tree (alight, alive etc..)
                 ForestFireCell activeCell = parentCell.GetComponent<ForestFireCell>();
-                if (activeCell.cellState == ForestFireCell.State.Alight) //Check status of the tree - look for fire
+                if (activeCell.cellState == ForestFireCell.State.Alight & tree.activeSelf) //Check status of the tree - look for fire,
                 {
-                    return true;
+                    return true; //Player is close enough to fire
                 }
             }
         }
-        return false;
+        return false; //Player is too far
     }
 
 
@@ -64,14 +66,14 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator FireDamage()
     {
         DamageOverlay.enabled = true;
-        CanTakeDamage = false; //Stop the update function from being called, whilst evaluating player status
-        yield return new WaitForSeconds(1);
+        CanTakeDamage = false; //Stop the update function from being called, whilst evaluating players next status
+        yield return new WaitForSeconds(1); //wait 1 second before continuing
     
         if (IsPlayerNearFire() == true) //Check if still next to fire, if so take damage
         {
             TakeDamage(5);
         }
-        DamageOverlay.enabled = false;
+        DamageOverlay.enabled = false; //Disable orange overlay
         CanTakeDamage = true; //Allow update function to continue checking each frame
     }
 
@@ -82,14 +84,16 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         CurrentHealth = MaxHealth; //Set current player health to full - start of game
-        healthBar.SetMaxHealth(MaxHealth);
+        healthBar.SetMaxHealth(MaxHealth); //update UI
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        CheckDeath(CurrentHealth);
+        CheckDeath(CurrentHealth); //Check for death
 
+        //If player can take damage and is near fire, run coroutine to determine if they stand next to fire for enough time to take damage
         if ((CanTakeDamage == true) & (IsPlayerNearFire() == true))
         {
             StartCoroutine(FireDamage());

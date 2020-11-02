@@ -82,6 +82,7 @@ public class ForestFireCell : MonoBehaviour
     // change cell state to grass    
     public void SetGrass()
     {
+        cellMinimapSprite.sprite = null;
         cellState = State.Grass;
         groundMeshRenderer.material = groundMaterialGrass;
         treeObject.SetActive(false);
@@ -137,10 +138,11 @@ public class ForestFireCell : MonoBehaviour
 
         // if there are leaves active in the hierarchy of this cell, disable them as if they have been burnt 
         if (treeObject.activeInHierarchy)
+        {
             leaves.SetActive(false);
-
+            cellMinimapSprite.sprite = DeadSprite; //set sprite
+        }
         cellState = State.Burnt;
-        cellMinimapSprite.sprite = DeadSprite;
         groundMeshRenderer.material = groundMaterialBurnt;
     }
 }

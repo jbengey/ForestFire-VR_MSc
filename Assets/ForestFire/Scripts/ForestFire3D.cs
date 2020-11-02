@@ -47,7 +47,7 @@ public class ForestFire3D : MonoBehaviour
     }
 
     // this function controls whether or not to pause the game
-    private void PauseGame(bool setGamePause)
+    public void PauseGame(bool setGamePause)
     {
         // if setGamePause is true the game should stop running
         if (setGamePause)

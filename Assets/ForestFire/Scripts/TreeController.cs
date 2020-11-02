@@ -10,7 +10,7 @@ public class TreeController : MonoBehaviour
     public int treeHealth=3;
     private bool fallen = false;
     public AudioSource TreeFallenAudio;
-
+    public SpriteRenderer minimapcell;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class TreeController : MonoBehaviour
             GameObject parentCell = myTree.transform.parent.gameObject.transform.parent.gameObject; //Create reference to the ForestFireCell prefab this instance is childed to - so that I can access the current state of the tree (alight, alive etc..)
             ForestFireCell activeCell = parentCell.GetComponent<ForestFireCell>();
             activeCell.SetBurnt();
-            activeCell.GetComponent<SpriteRenderer>().sprite = null;
+            minimapcell.sprite = null;
 
             Rigidbody treeRB = myTree.AddComponent<Rigidbody>();
             treeRB.isKinematic = false;
