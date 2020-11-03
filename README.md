@@ -1,5 +1,7 @@
-# GameOfLife Broken Vesion
+# Forest Fire VR
 
-This is released to the students of VR MSC as broken code example. Any one using this not in the university will be disappionted as its incomplete.
+This is a project used to showcase the implementation of the "Game Of Life" logic to a VR enviroment. The application is the randomised event of a forest fire, with additional features added to enhance the experience when inside VR.
+
+
 
 
