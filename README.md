@@ -14,5 +14,5 @@ Your player has a convenient health bar located on the right wrist, keep an eye 
 <br><br>
 
 ### :mag: Enhanced Minimap
-In your left hand you will notice a sprite based minimap. Use your right hand to aim the green ray at the slider below the map to change the zoom level and your vision. The map will alert you to any fire spread, burnt trees and the inital axe spawn location.
+In your left hand you will notice a sprite based minimap. Use your right hand to aim the green ray at the slider below the map and grab using trigger, to change the zoom level and your vision. The map will alert you to any fire spread, burnt trees and the inital axe spawn location.
 <br><br>
