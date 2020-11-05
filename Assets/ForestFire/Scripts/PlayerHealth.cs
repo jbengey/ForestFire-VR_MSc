@@ -71,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
     
         if (IsPlayerNearFire() == true) //Check if still next to fire, if so take damage
         {
-            TakeDamage(5);
+            TakeDamage(10);
         }
         DamageOverlay.enabled = false; //Disable orange overlay
         CanTakeDamage = true; //Allow update function to continue checking each frame

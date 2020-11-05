@@ -140,9 +140,11 @@ public class ForestFireCell : MonoBehaviour
         if (treeObject.activeInHierarchy)
         {
             leaves.SetActive(false);
-            cellMinimapSprite.sprite = DeadSprite; //set sprite
+            
         }
+        cellMinimapSprite.sprite = DeadSprite; //set sprite
         cellState = State.Burnt;
         groundMeshRenderer.material = groundMaterialBurnt;
+        
     }
 }
