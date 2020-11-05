@@ -139,10 +139,11 @@ public class ForestFireCell : MonoBehaviour
         // if there are leaves active in the hierarchy of this cell, disable them as if they have been burnt 
         if (treeObject.activeInHierarchy)
         {
+            cellMinimapSprite.sprite = DeadSprite; //set sprite
             leaves.SetActive(false);
             
         }
-        cellMinimapSprite.sprite = DeadSprite; //set sprite
+
         cellState = State.Burnt;
         groundMeshRenderer.material = groundMaterialBurnt;
         
