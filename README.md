@@ -1,6 +1,8 @@
 # Forest Fire VR
 
 This project showcases an implementation of the "Game Of Life" logic to a VR enviroment. The application is a randomised event of a forest fire, with additional features added to enhance the experience when inside VR.
+<br><br>
+[![](https://github.com/jbengey/ForestFire-VR_MSc/blob/master/GITHUB_video_image.png?raw=true)](http://www.youtube.com/watch?v=_uU5WR56pBc "Showcase")
 
 ## Features:
 
