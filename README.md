@@ -16,3 +16,14 @@ Your player has a convenient health bar located on the right wrist, keep an eye 
 ### :mag: Enhanced Minimap
 In your left hand you will notice a sprite based minimap. Use your right hand to aim the green ray at the slider below the map and grab using trigger, to change the zoom level and your vision. The map will alert you to any fire spread, burnt trees and the inital axe spawn location.
 <br><br>
+
+## Release Information
+Current Version 1.0.0 - [Download](https://github.com/jbengey/ForestFire-VR_MSc/releases/download/V1.0/ForestFire-RELEASE-V1.zip)
+<br><br>
+
+### Tested with the following:
+* Unity 2019.4.10f1
+* Acer Mixed Reality Headset
+* NVIDIA GTX 1070
+* Intel I7-7700HQ
+* 16GB Ram
