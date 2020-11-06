@@ -22,7 +22,7 @@ Current Version 1.0.0 - [Download](https://github.com/jbengey/ForestFire-VR_MSc/
 <br><br>
 
 ### Tested with the following:
-* Unity 2019.4.10f1
+* Unity 2019.4.12f1
 * Acer Mixed Reality Headset
 * NVIDIA GTX 1070
 * Intel I7-7700HQ
