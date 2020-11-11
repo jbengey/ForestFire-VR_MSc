@@ -56,6 +56,15 @@ public class PlayerHealth : MonoBehaviour
                 {
                     return true; //Player is close enough to fire
                 }
+
+            //Specific check for grass objects as they have no tag or visual cue.
+            else if (hitCollider.gameObject.name == "ForestFireCell")
+                {
+                    if(hitCollider.gameObject.GetComponent<ForestFireCell>().currentFire != null)
+                    {
+                        return true; //Player is close enough to fire
+                    } 
+                }
             }
         }
         return false; //Player is too far

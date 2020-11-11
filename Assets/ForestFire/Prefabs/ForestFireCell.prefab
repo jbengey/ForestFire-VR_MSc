@@ -246,7 +246,7 @@ MonoBehaviour:
     type: 3}
   currentFire: {fileID: 0}
   playerCamera: {fileID: 0}
-  fireVFXDistance: 150
+  fireVFXDistance: 85
 --- !u!114 &2395562120029711758
 MonoBehaviour:
   m_ObjectHideFlags: 0

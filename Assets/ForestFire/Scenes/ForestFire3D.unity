@@ -447,7 +447,7 @@ MonoBehaviour:
   cellPrefab: {fileID: 8517016399536926406, guid: bd5b6afb2ea580946a81c949556e036e,
     type: 3}
   gameRunning: 0
-  updateRate: 2.45
+  updateRate: 0.01
   axeX: 0
   axeY: 0
 --- !u!4 &277846092 stripped
@@ -2113,6 +2113,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 297774587501200439, guid: 97b3dc528574e5541b46a00cb89c3ec1,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1146430811609550251, guid: 97b3dc528574e5541b46a00cb89c3ec1,
         type: 3}
       propertyPath: m_Layer
@@ -2246,6 +2251,16 @@ PrefabInstance:
     - target: {fileID: 6769517784364034848, guid: 97b3dc528574e5541b46a00cb89c3ec1,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769517784364034848, guid: 97b3dc528574e5541b46a00cb89c3ec1,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769517784364034848, guid: 97b3dc528574e5541b46a00cb89c3ec1,
+        type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6954854457773527775, guid: 97b3dc528574e5541b46a00cb89c3ec1,

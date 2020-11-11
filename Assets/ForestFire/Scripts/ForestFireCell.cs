@@ -77,6 +77,11 @@ public class ForestFireCell : MonoBehaviour
         groundMeshRenderer.material = groundMaterialTree;
         cellMinimapSprite.sprite = TreeSprite;
         treeObject.SetActive(true);
+
+        if (currentFire != null)
+        {
+            Destroy(currentFire);
+        }
     }
 
     // change cell state to grass    
@@ -87,6 +92,11 @@ public class ForestFireCell : MonoBehaviour
         groundMeshRenderer.material = groundMaterialGrass;
         treeObject.SetActive(false);
         rockObject.SetActive(false);
+
+        if (currentFire != null)
+        {
+            Destroy(currentFire);
+        }
     }
 
     // change cell state to rock
@@ -121,6 +131,7 @@ public class ForestFireCell : MonoBehaviour
             {
                 currentFire = Instantiate(grassFireFVX);
                 currentFire.transform.SetParent(gameObject.transform, true);
+                currentFire.transform.localPosition = Vector3.zero;
             }
             // get a reference to the vfx component on the current fire object
             _fireVisualEffect = currentFire.GetComponent<VisualEffect>();
@@ -143,6 +154,13 @@ public class ForestFireCell : MonoBehaviour
             leaves.SetActive(false);
             
         }
+
+        //If the game object is not a rock, and the sprite is not blank (It must be a burnt piece of grass - so remove the flame sprite)
+        else if (rockObject.activeInHierarchy == false & cellMinimapSprite.sprite != null)
+        {
+            cellMinimapSprite.sprite = null;
+        }
+            
 
         cellState = State.Burnt;
         groundMeshRenderer.material = groundMaterialBurnt;
